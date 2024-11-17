@@ -21,7 +21,7 @@ def generate_ellipsoid_clusters(distance, n_samples=100, cluster_std=0.5):
     
     # Implement: Shift the second cluster along the x-axis and y-axis for a given distance
     X2[:, 0] += distance  
-    X2[:, 1] += distance
+    X2[:, 1] -= distance
     y2 = np.ones(n_samples)
 
     # Combine the clusters into one dataset
@@ -145,11 +145,11 @@ def do_experiments(start, end, step_num):
     plt.title("Shift Distance vs Beta1 / Beta2 (Slope)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta1 / Beta2")
-    plt.ylim(-2, 0)
+    # plt.ylim(-2, 0)
 
     # Implement: Plot beta0 / beta2 (Intercept ratio)
     plt.subplot(3, 3, 5)
-    plt.plot(shift_distances, [-b0/b2 for b0, b2 in zip(beta0_list, beta2_list)], 'c-')
+    plt.plot(shift_distances, intercept_list, 'c-')
     plt.title("Shift Distance vs Beta0 / Beta2 (Intercept Ratio)")
     plt.xlabel("Shift Distance")
     plt.ylabel("Beta0 / Beta2")
